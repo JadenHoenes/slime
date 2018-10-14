@@ -9,7 +9,7 @@ game.PlayerEntity = me.Entity.extend({
     init:function (x, y, settings) {
         // call the constructor
         this._super(me.Entity, 'init', [x, y , settings]);
-        this.body.setVelocity(3,15);
+        this.body.setVelocity(3,19);
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
         this.alwaysUpdate = true;
         this.renderable.addAnimation("walk", [0,1,2,3,4,5,6,7]);
@@ -51,6 +51,7 @@ game.PlayerEntity = me.Entity.extend({
             {
                 this.body.vel.y = -this.body.maxVel.y * me.timer.tick;
                 this.body.jumping = true;
+                me.audio.play('jump');
             }
         }
         
@@ -102,6 +103,8 @@ game.PlayerEntity = me.Entity.extend({
 
                 // set the jumping flag
                 this.body.jumping = true;
+                  
+                me.audio.play('stomp');
               }
               else {
                 // let's flicker in case we touched an enemy
@@ -131,6 +134,8 @@ game.CoinEntity = me.CollectableEntity.extend({
     },
     
     onCollision : function (response, other) {
+        me.audio.play('cling');
+        game.data.score += 250;
         this.body.setCollisionMask(me.collision.types.NO_OBJECT);
         me.game.world.removeChild(this);
         

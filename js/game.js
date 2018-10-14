@@ -35,12 +35,13 @@ var game = {
         me.pool.register("coin", game.CoinEntity);
         me.pool.register("enemy", game.EnemyEntity);
         
+        
         me.input.bindKey(me.input.KEY.LEFT, 'left');
         me.input.bindKey(me.input.KEY.RIGHT, 'right');
         me.input.bindKey(me.input.KEY.UP, 'jump', true);
 
 
         // Start the game.
-        me.state.change(me.state.PLAY);
+        me.state.change(me.state.MENU);
     }
 };
