@@ -32,6 +32,8 @@ var game = {
 
         // add our player entity in the entity pool
         me.pool.register("mainPlayer", game.PlayerEntity);
+        me.pool.register("coin", game.CoinEntity);
+        me.pool.register("enemy", game.EnemyEntity);
         
         me.input.bindKey(me.input.KEY.LEFT, 'left');
         me.input.bindKey(me.input.KEY.RIGHT, 'right');
